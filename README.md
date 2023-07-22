@@ -14,4 +14,4 @@ Horizontal privilege escalation, or account takeover, allows attackers to latera
 - [Capabilities]()
 - [Cron jobs]()
 - [PATH]()
-- [Network File System NFS()]()
+- [Network File System (NFS)]()
