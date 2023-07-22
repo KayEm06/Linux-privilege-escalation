@@ -27,7 +27,7 @@ User kayem may run the following commands on kali:
 
 `env_reset` is an option that defaults environment variables before running the command with sudo, unless the environment variable is added to the list of preserved variables with the `env_keep` option. In the example above, we can see that the `LD_PRELOAD` environment variable is retained when resetting the environment.
 
-To restrict `LD_PRELOAD` from loading in arbitrary shared libraries, dynamic linkers ignore the environment variable if the real user ID (ruid) is different to the effective user ID (uid). The real user ID represents the user who executed the sudo command and the effective user ID represents the user ID under which the process is running. For instance, when running processes with sudo, the ruid will be 1000 but the uid will be 0 (root) so the environment variable will be ignored. 
+To restrict `LD_PRELOAD` from loading in arbitrary shared libraries, dynamic linkers ignore the environment variable if the real user ID (ruid) is different to the effective user ID (uid). The real user ID represents the user who executed the sudo command and the effective user ID represents the user ID under which the process is running. For instance, when running processes with sudo, the ruid will be 1000 but the uid will be 0 (root), so the environment variable will be ignored. 
 
 # Practical
 
