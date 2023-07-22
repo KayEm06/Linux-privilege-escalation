@@ -43,6 +43,15 @@ To remove the SGID bit with symbolic representation, you can use the following c
 chmod g-s kayem
 ```
 
+# Practical
 
-
-
+Although you can use automated tools like Linpeas (https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) to hunt for potentially vulnerable SUID bit set programs, it is important to understand how you can manually hunt for them. The following command uses the 'find' program to search the root directory of the file system for all files with the SUID bit set whilst redirecting all standard errors to the /dev/null directory.
+```
+find / -perm -u=s -type f 2>/dev/null
+```
+You can complement this command with GTFOBins (https://gtfobins.github.io/), a library of binaries that can be used against command-line utilities to elevate privileges. Running this command on the target system revealed the base64 binary stored at `/usr/bin/base64`, with the help of GTFOBins, the following command can be used to read the contents of the `/etc/shadow` file.
+```
+LFILE=/etc/shadow
+base64 "$LFILE" | base64 --decode
+```
+After executing this command, you should have the hashes for all users on the system and can crack them with Hydra, Hashcat, JohnTheRipper, or perform a Pass-The-Hash attack.
