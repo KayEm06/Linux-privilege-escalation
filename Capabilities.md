@@ -6,7 +6,7 @@ Linux capabilities are a per-thread attribute of the root privileges that can be
 - **Permitted (CapPrm)**:   A superset of the effective capability set that includes capabilities a thread/process can add to its effective or inheritable capability sets. 
 - **Inheritable (CapInh)**: Defines capabilities a parent process can pass to its child processes. This set is preserved across an [execve call](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Capabilities.md#execve-calls)
 - **Bounding (CapBnd)**:    Sets a limit on the number of capabilities a process can possess.
-- **Ambient (CapAmb)**:     Applies to non-SUID binaries and retains selected capabilities of a process after an execve call. 
+- **Ambient (CapAmb)**:     Applies to non-SUID binaries and retains selected capabilities of a process after an execve call. The purpose of the ambient set is to allow a process to execute a program with elevated privileges as to limit the number of capabilities held by each process.
 
 The following is a list of capabilities that can be exploited.
 
