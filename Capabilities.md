@@ -4,7 +4,7 @@ Linux capabilities are a per-thread attribute of the root privileges that can be
 
 - **Effective (CapEff)**:   Represents all the capabilities used by processes. The kernel consults this set to grant or deny permissions for requested operations.
 - **Permitted (CapPrm)**:   A superset of the effective capability set that includes capabilities a thread/process can add to its effective or inheritable capability sets. 
-- **Inheritable (CapInh)**: Defines capabilities a parent process can pass to its child processes. This set is preserved across an [execve call](##Execve-calls)
+- **Inheritable (CapInh)**: Defines capabilities a parent process can pass to its child processes. This set is preserved across an [execve call](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Capabilities.md#execve-calls)
 - **Bounding (CapBnd)**:    Sets a limit on the number of capabilities a process can possess.
 - **Ambient (CapAmb)**:     Applies to non-SUID binaries and retains selected capabilities of a process after an execve call. 
 
