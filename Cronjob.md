@@ -4,6 +4,15 @@ _**TO VIEW PRACTICAL, [CLICK HERE](#Practical)**_
 `Cron` is a utility used in Unix systems to schedule tasks; it uses the cron daemon, `crond`, to run in the background and manage the execution of cron jobs by reading and processing the `cron table`. A cron job is a task scheduled to run in a given period that helps users automate routine tasks such as archiving logs or backing up system files. Cron jobs are maintained in cron tables, configuration files located at `/var/spool/cron/crontabs` and '/etc/crontab' that define the schedules of tasks. Cron tables can be specific to the system or individual users.
 
 ## Syntax
+
+The system-wide cron table is readable by regular users and can be accessed with any text editor:
+```
+vim /etc/crontab
+```
+To edit the system-wide cron table, you must be a privileged user
+```
+sudo vim /etc/crontab
+```
 You can list the cron table your account has access to with the command:
 ```
 crontab -l
