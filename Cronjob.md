@@ -36,12 +36,15 @@ The cron job above will execute /home/kayem/script.sh at 5:30 on every 2nd day o
 
 ## Managing cron tables
 
-There are two types of cron tables: system and user. System cron tables are located at `etc/crontab` and require root privileges to edit, it contains scheduled tasks that apply to the entire system and tasks that need to be executed as the root for high-privileged operations. To edit the system cron table, you have to use a text editor such as Vim, or Nano, as attempting to edit it with `sudo cron tab -e` will revise the personal cron tab of the root user, rather than the system cron table. As for the user cron table, each user has their cron table. Although not created automatically, it can be created by a system administrator or the user. An admin can create a cron table for a user with the command:
+There are two types of cron tables: system and user. System cron tables are located at `etc/crontab` and require root privileges to edit, it contains scheduled tasks that apply to the entire system and tasks that need to be executed as the root for high-privileged operations. To edit the system cron table, you have to use a text editor such as Vim, or Nano, as attempting to edit it with `sudo cron tab -e` will revise the personal cron table of the root user, rather than the system cron table. As for the user cron table, each user has their cron table. Although not created automatically, it can be created by a system administrator or the user. An admin can create a cron table for a user with the command:
 ```
 crontab -e -u [USER]
 ```
 Users can create a cron table without root privileges but are limited to scheduling tasks with the files they have permission to execute.
 
+## Security implications of cron jobs
+
+If misconfigured, cron jobs can exploit high privileges and gain unauthorised access to critical system resources. Therefore it is necessary that -personal cron jobs run with the privileges of the user, rather than higher privileged users. If a cron job file has the SUID bit set, is owned by a higher privileged user, like root, and a regular user has write permissions, they can inject malicious code to be executed that spawns a root shell, deletes critical files, terminates services, and the like.
 
 # Practical
 
