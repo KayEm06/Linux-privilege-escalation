@@ -13,5 +13,5 @@ Horizontal privilege escalation, or account takeover, allows attackers to latera
 - [Set User ID (SUID)](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/SUID.md)
 - [Capabilities](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Capabilities.md)
 - [Cron jobs](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Cronjob.md)
-- [PATH]()
+- [PATH](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/PATH.md)
 - [Network File System (NFS)]()
