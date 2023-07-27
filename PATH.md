@@ -22,3 +22,17 @@ First, find a writable directory that can be added to the PATH variable. The com
 ```
 find / -type d -writable -maxdepth 3 2>/dev/null
 ```
+
+# Practical
+
+I begin by enumerating the file system, I locate two files in the /home/murdoch directory `test` and `thm.py`. After running `test` the shell returns `thm: not found` indicating that the shell is looking for the binary. 
+
+By running `ls -l` in the current /home/murdoch directory, the `test` executable has 4777 permissions and is owned by root meaning that `thm` will be executed as root. Therefore, we can create a new file called thm and add a `/bin/bash` payload that opens a new terminal instance into this file.
+```
+echo "/bin/bash" > thm
+```
+We then need to add execute permissions to the file so that it can be executed by `test`
+```
+chmod +x thm
+```
+Finally, we run the `test` executable and should be the root user.
