@@ -8,3 +8,11 @@ Exported directories are directories made available by the NFS server to NFS cli
 ```
 showmount -e <IP_ADDRESS>
 ```
+Alternatively, you can view shares the NFS server is configured to export and share with clients.
+```
+cat /etc/exports
+```
+Shares that are currently mounted on the file system are stored.
+```
+cat /proc/mounts
+```
