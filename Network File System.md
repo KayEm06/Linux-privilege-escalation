@@ -4,7 +4,7 @@ Network File System (NFS) is a client-server file-sharing protocol used across U
 ```
 sudo mount -t nfs <IP_ADDRESS>:/<SHARE> <MOUNT_POINT>
 ```
-# Enumeration
+## Enumeration
 
 Exported directories are directories made available by the NFS server to NFS clients for access and mounting. With the following `showmount` command, you can view available exported directories on a particular NFS server.
 ```
@@ -19,7 +19,7 @@ Shares that are currently mounted on the file system are stored. If no proper au
 cat /proc/mounts
 ```
 
-# Exploiting NFS
+## Exploiting NFS
 ### Bypassing UID permissions
 
 Older NFS versions such as `NFSv2` and `NFSv3` lack robust authentication and authorisation mechanisms and can be easily bypassed to gain unauthorised access to shares on the file system or privileged access.
