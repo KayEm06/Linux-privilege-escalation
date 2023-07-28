@@ -12,7 +12,7 @@ Alternatively, you can view shares the NFS server is configured to export and sh
 ```
 cat /etc/exports
 ```
-Shares that are currently mounted on the file system are stored.
+Shares that are currently mounted on the file system are stored. If no proper authentication or authorisation mechanisms are used, these shares can be exploited to escalate privileges or to exfiltrate sensitive information. 
 ```
 cat /proc/mounts
 ```
