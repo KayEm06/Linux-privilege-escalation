@@ -20,7 +20,7 @@ cat /proc/mounts
 ```
 
 # Exploiting NFS
-## Bypassing UID permissions
+### Bypassing UID permissions
 
 Older NFS versions such as `NFSv2` and `NFSv3` lack robust authentication and authorisation mechanisms and can be easily bypassed to gain unauthorised access to shares on the file system or privileged access.
 
@@ -38,7 +38,7 @@ sudo useradd -u <UID> <USERNAME>
 ```
 su <USERNAME>
 ```
-## Exploiting configurations
+### Exploiting configurations
 
 Root squashing is an NFS feature that restricts the privileges of a root user by assuming all root users as low-privileged users. Root squashing is enabled by default; however, some networks may require remote root access and specify the `no_root_access` option in the NFS server's configuration file.
 
