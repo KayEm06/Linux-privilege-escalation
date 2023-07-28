@@ -8,7 +8,7 @@ Horizontal privilege escalation, or account takeover, allows attackers to latera
 
 ## Linux Privilege Escalation
 
-- [Kernel exploits]()
+- [Kernel exploits](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Kernel%20exploits.md)
 - [Super User Do (Sudo)](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Sudo.md)
 - [Set User ID (SUID)](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/SUID.md)
 - [Capabilities](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Capabilities.md)
