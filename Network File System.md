@@ -38,3 +38,10 @@ sudo useradd -u <UID> <USERNAME>
 ```
 su <USERNAME>
 ```
+## Exploiting configurations
+
+Root squashing is an NFS feature that restricts the privileges of a root user by assuming all root users as low-privileged users. Root squashing is enabled by default; however, some networks may require remote root access and specify the `no_root_access` option in the NFS server's configuration file.
+
+With this option configured, you can create a directory on your local machine as the root user, mount it to the file system, and you will notice that the mounted directory will be owned by the root user on the file system.
+
+You can then create a "/bin/bash" payload file with the SUID bit enabled so that when run on the NFS file system, a root shell will be spawned on it.
