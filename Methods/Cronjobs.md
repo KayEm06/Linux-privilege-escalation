@@ -55,7 +55,7 @@ Users can create a cron table without root privileges but are limited to schedul
 
 If misconfigured, cron jobs can exploit high privileges and gain unauthorised access to critical system resources. Therefore, it is necessary that personal cron jobs run with the privileges of the user; rather than higher privileged users. If a cron job file has the SUID bit set, is owned by a higher privileged user, like root, and a regular user has write permissions, they can inject malicious code to be executed that spawns a root shell, deletes critical files, terminates services, and the like.
 
-# Practical
+## Practical
 
 I began by identifying which cron jobs the user has access to with `crontab -e`, for local cron jobs, or `cat /etc/crontab` for system-wide cron jobs. With `cat /etc/crontab` 
 
@@ -75,7 +75,7 @@ chmod +x /home/karen/backup.sh
 ```
 You can modify the `backup.sh` following two methods to escalate privileges.
 
-## Method 1
+### Method 1
 
 The following payload 
 
@@ -83,7 +83,7 @@ The following payload
 
 '/tmp/bash -p'
 
-## Method 2
+### Method 2
 
 Alternatively, add your user to the /etc/sudoers file!
 
