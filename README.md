@@ -1,4 +1,4 @@
-a# Privilege Escalation
+# Privilege Escalation
 
 Privilege escalation is the elevation of permissions to gain leveraged access to sensitive resources on a computer system or network. Typically, credentials are provided to access privileged users; however, attackers with compromised access can exploit bugs, design flaws, and configuration oversights in system infrastructure to obtain and masquerade as higher privileged accounts. With these accounts, attackers can maintain an undetected presence in the system by masking IP addresses and removing logs; or damaging the organisation by exfiltrating or corrupting data.
 
