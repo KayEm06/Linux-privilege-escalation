@@ -8,6 +8,8 @@ Horizontal privilege escalation, or account takeover, allows attackers to move l
 
 ## Linux Privilege Escalation
 
+The following links provide background on each privilege escalation method and a walkthrough for each challenge on TryHackMe's Linux Privilege Escalation room.
+
 - [Kernel exploits](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Methods/Kernel%20exploits.md)
 - [Super User Do (Sudo)](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Methods/Sudo.md)
 - [Set User ID (SUID)](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Methods/SUID.md)
