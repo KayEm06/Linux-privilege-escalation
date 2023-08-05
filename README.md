@@ -14,6 +14,6 @@ The following links provide background on each privilege escalation method and a
 - [Super User Do (Sudo)](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Methods/Sudo.md)
 - [Set User ID (SUID)](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Methods/SUID.md)
 - [Capabilities](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Methods/Capabilities.md)
-- [Cron jobs](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Methods/Cronjob.md)
+- [Cron jobs](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Methods/Cronjobs.md)
 - [PATH](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Methods/PATH.md)
 - [Network File System (NFS)](https://github.com/KayEm06/Linux-privilege-escalation/blob/main/Methods/Network%20File%20System.md)
