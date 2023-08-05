@@ -10,14 +10,14 @@ Linux capabilities are a per-thread attribute of the root privileges that can be
 
 The following is a list of capabilities that can be exploited.
 
-- CAP_CHOWN: Makes arbitrary changes to file UIDs and GIDs.
-- CAP_DAC_OVERRIDE: Bypasses file read, write, and execute permissions check.
-- CAP_NET_ADMIN: Performs network-related operations.
-- CAP_NET_RAW: Uses RAW and PACKET sockets.
-- CAP_SETGID: Manipulates GIDs
-- CAP_SETFCAP: Sets arbitrary capabilities on a file.
-- CAP_SETUID: Manipulates UIDs
-- CAP_SYS_ADMIN: Performs a range of system administration operations.
+- **CAP_CHOWN**: Makes arbitrary changes to file UIDs and GIDs.
+- **CAP_DAC_OVERRIDE**: Bypasses file read, write, and execute permissions check.
+- **CAP_NET_ADMIN**: Performs network-related operations.
+- **CAP_NET_RAW**: Uses RAW and PACKET sockets.
+- **CAP_SETGID**: Manipulates GIDs
+- **CAP_SETFCAP**: Sets arbitrary capabilities on a file.
+- **CAP_SETUID**: Manipulates UIDs
+- **CAP_SYS_ADMIN**: Performs a range of system administration operations.
 
 ## Execve calls
 
@@ -29,7 +29,9 @@ I retrieve all executables with capabilities.
 ```
 getcap -r / 2>/dev/null
 ```
-We can use these results with [GTFOBins](https://gtfobins.github.io/) to find capability-specific binaries that can be exploited for escalated privileges.
+The two binaries at `/home/karen/vim` and `/home/ubuntu/view` have the `cap_setuid` capability in their effective capability sets. With this capability, we can manipulate the program to change the UID of our user to the root user's (0).
+
+Using [GTFOBins](https://gtfobins.github.io/), I find a binary bypass specific to the "view" binary to gain escalated privileges.
 
 The following payload can be run from the terminal to set the effective user ID to 0 (root) and execute the "/bin/sh" shell as root. 
 
